@@ -9,7 +9,7 @@ import {
   fetchQueryResults
 } from '../api';
 
-const Search = (props) => {
+const Search = ({ setIsLoading, setSearchResults }) => {
   // Make sure to destructure setIsLoading and setSearchResults from the props
 
 
