@@ -36,7 +36,12 @@ const Search = ({ setIsLoading, setSearchResults }) => {
     Promise.all([
       fetchAllCenturies,
       fetchAllClassifications
-    ]).then(setCenturyList(fetchAllCenturies), setClassificationList(fetchAllClassifications))
+    ]).then(
+      (results) => {
+      const [allCenturies, allClassifications] = results;
+      setCenturyList(allCenturies);
+      setClassificationList(allClassifications);
+    })
   }, []);
 
   /**
