@@ -46,7 +46,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
       const results = fetchQueryResults({ century, classification, queryString })
       setSearchResults(results)
     } catch (err) {
-      console.log(err)
+      console.log("WHOOPS! There was an ERROR:" + err)
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +58,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         type="text" 
         placeholder="enter keywords..." 
         value={queryString} 
-        onChange={setQueryString}/>
+        onChange={e => setQueryString(e.target.value)}/>
     </fieldset>
     <fieldset>
       <label htmlFor="select-classification">Classification <span className="classification-count">({ classificationList.length })</span></label>
@@ -66,7 +66,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         name="classification"
         id="select-classification"
         value={classification} 
-        onChange={setClassification}>
+        onChange={e => setClassification(e.target.value)}>
         <option value="any">Any</option>
         {/* map over the classificationList, return an <option /> */}
       </select>
@@ -77,7 +77,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         name="century" 
         id="select-century"
         value={century} 
-        onChange={setCentury}>
+        onChange={e => setCentury(e.target.value)}>
         <option value="any">Any</option>
         {/* map over the centuryList, return an <option /> */}
       </select>
