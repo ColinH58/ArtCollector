@@ -11,7 +11,10 @@ import {
 
 const Search = ({ setIsLoading, setSearchResults }) => {
   // Make sure to destructure setIsLoading and setSearchResults from the props
-
+  const [centuryList, setCenturyList] = useState([]);
+  const [classificationList, setClassificationList] = useState([]);
+  const [queryString, setQueryString] = useState('');
+  const [classification, setClassification] = useState('any');
 
   /**
    * We are at the Search component, a child of app. This has a form, so we need to use useState for

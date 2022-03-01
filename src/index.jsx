@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 // These imports won't work until you fix ./components/index.js
-import { Feature, Loading, Preview, Search, Title } from "./components/index.jsx";
+import { Loading, Feature, Preview, Search, Title } from "./components/index.jsx";
 
 function App() {
   const [searchResults, setSearchResults] = useState({info: {}, records: []});
