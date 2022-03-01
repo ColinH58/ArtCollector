@@ -6,39 +6,18 @@ import {
 } from '../api';
 
 const Search = ({ setIsLoading, setSearchResults }) => {
-  // Make sure to destructure setIsLoading and setSearchResults from the props
   const [centuryList, setCenturyList] = useState([]);
   const [classificationList, setClassificationList] = useState([]);
   const [queryString, setQueryString] = useState('');
   const [century, setCentury] = useState('any');
   const [classification, setClassification] = useState('any');
 
-  /**
-   * We are at the Search component, a child of app. This has a form, so we need to use useState for
-   * our controlled inputs:
-   * 
-   * centuryList, setCenturyList (default should be an empty array, [])
-   * classificationList, setClassificationList (default should be an empty array, [])
-   * queryString, setQueryString (default should be an empty string, '')
-   * century, setCentury (default should be the string 'any')
-   * classification, setClassification (default should be the string 'any')
-   */
-
-
-  /**
-   * Inside of useEffect, use Promise.all([]) with fetchAllCenturies and fetchAllClassifications
-   * 
-   * In the .then() callback pass the returned lists to setCenturyList and setClassificationList
-   * 
-   * Make sure to console.error on caught errors from the API methods.
-   */
   useEffect(() => {
     Promise.all([
       fetchAllCenturies,
       fetchAllClassifications
-    ]).then(
-      (results) => {
-      const [allCenturies, allClassifications] = results;
+    ]).then((res) => {
+      const [allCenturies, allClassifications] = res;
       setCenturyList(allCenturies);
       setClassificationList(allClassifications);
     })
