@@ -10,12 +10,11 @@ function App() {
 
   return (
     <div className="app">
-
       {/* <Title /> is static, doesn't need any props */}
       <Title />
 
       {/* <Search /> needs props for setIsLoading and setSearchResults (trigger <Loading /> on search start/end, and transfer results to preview) */}
-      <Search setIsLoading={setIsLoading} setSearchResults={setSearchResults} />
+      {/* <Search setIsLoading={setIsLoading} setSearchResults={setSearchResults} /> */}
 
       {/* <Preview /> needs props for searchResults, setIsLoading and setSearchResults (clicking prev/next buttons), and setFeaturedResult (clicking a preview) */}
       {/* <Preview searchResults={searchResults} setIsLoading={setIsLoading} setSearchResults={setSearchResults} setFeaturedResult={setFeaturedResult} /> */}
