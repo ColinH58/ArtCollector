@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-/**
- * Don't touch these imports!
- */
 import { 
   fetchAllCenturies,
   fetchAllClassifications,
@@ -14,6 +10,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
   const [centuryList, setCenturyList] = useState([]);
   const [classificationList, setClassificationList] = useState([]);
   const [queryString, setQueryString] = useState('');
+  const [century, setCentury] = useState('any');
   const [classification, setClassification] = useState('any');
 
   /**
@@ -36,7 +33,10 @@ const Search = ({ setIsLoading, setSearchResults }) => {
    * Make sure to console.error on caught errors from the API methods.
    */
   useEffect(() => {
-
+    Promise.all([
+      fetchAllCenturies,
+      fetchAllClassifications
+    ]).then(setCenturyList(fetchAllCenturies), setClassificationList(fetchAllClassifications))
   }, []);
 
   /**
