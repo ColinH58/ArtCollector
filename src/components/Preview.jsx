@@ -39,12 +39,12 @@ const Preview = ({ searchResults:{info, records}, setSearchResults, setFeaturedR
       <button 
         disabled={!info.prev} 
         className="previous"
-        onClick={() => fetchPage(info.prev)}>Previous</button>
+        onClick={() => {fetchPage(info.prev)}}>Previous</button>
       {/* This button should be disabled if nothing is set in info.next, and should call fetchPage with info.next when clicked */}
       <button
         disabled={!info.next}
         className="next"
-        onClick={() => fetchPage(info.next)}>Next</button>
+        onClick={() => {fetchPage(info.next)}}>Next</button>
     </header>
     <section className="results">
       {
