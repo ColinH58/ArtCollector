@@ -14,12 +14,11 @@ const Search = ({ setIsLoading, setSearchResults }) => {
 
   useEffect(() => {
     Promise.all([
-      fetchAllCenturies,
-      fetchAllClassifications
-    ]).then((res) => {
-      const [allCenturies, allClassifications] = res;
-      setCenturyList(allCenturies);
-      setClassificationList(allClassifications);
+      fetchAllCenturies(),
+      fetchAllClassifications()
+    ]).then(([centuries, classifications]) => {
+      setCenturyList(centuries);
+      setClassificationList(classifications);
     })
   }, []);
 
@@ -69,6 +68,9 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         onChange={(event) => setClassification(event.target.value)}>
         <option value="any">Any</option>
         {/* map over the classificationList, return an <option /> */}
+        {classificationList.map((classification) => {
+          return (<option key={classification.id} value={classification.name}>{classification.name}</option>);
+        })}
       </select>
     </fieldset>
     <fieldset>
@@ -80,6 +82,9 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         onChange={(event) => setCentury(event.target.value)}>
         <option value="any">Any</option>
         {/* map over the centuryList, return an <option /> */}
+        {centuryList.map((century) => {
+          return (<option key={century.id} value={century.name}>{century.name}</option>);
+        })}
       </select>
      </fieldset>
     <button>SEARCH</button>
