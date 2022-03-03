@@ -22,22 +22,6 @@ const Search = ({ setIsLoading, setSearchResults }) => {
     })
   }, []);
 
-  /**
-   * This is a form element, so we need to bind an onSubmit handler to it which:
-   * 
-   * calls event.preventDefault()
-   * calls setIsLoading, set it to true
-   * 
-   * then, in a try/catch/finally block:
-   * 
-   * try to:
-   * - get the results from fetchQueryResults({ century, classification, queryString })
-   * - pass them to setSearchResults
-   * 
-   * catch: error to console.error
-   * 
-   * finally: call setIsLoading, set it to false
-   */
   return <form id="search" onSubmit={async (event) => {
     event.preventDefault();
     setIsLoading(true);
