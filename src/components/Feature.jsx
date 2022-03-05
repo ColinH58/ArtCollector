@@ -39,23 +39,7 @@ const Feature = (props) => {
   if (!featuredResult) {
     return <main id="feature"></main>;
   } else {
-    const {
-      title,
-      dated,
-      images,
-      primaryimageurl,
-      description,
-      culture,
-      style,
-      technique,
-      medium,
-      dimensions,
-      people,
-      department,
-      division,
-      contact,
-      creditline,
-    } = featuredResult;
+    const { title, dated, images, primaryimageurl, description, culture, style, technique, medium, dimensions, people, department, division, contact, creditline } = featuredResult;
     return (
       <main id="feature">
         <div className="object-feature">
@@ -131,9 +115,21 @@ const Feature = (props) => {
               </React.Fragment>
             ) : null}
           </section>
-          {/* <section className="photos">
-            {images.map((imgResult)=> (<img key={imgResult} src={imgResult.primaryimageurl}/>))}
-          </section> */}
+          <section className="photos">
+          {images.length > 0 ? (
+            images.map((image) => {
+              return (
+                <img
+                  key={image.toString}
+                  src={image.baseimageurl}
+                  alt={description}
+                />
+              );
+            })
+          ) : (
+            <img src={primaryimageurl} alt={description} />
+          )}
+          </section>
         </div>
       </main>
     );
