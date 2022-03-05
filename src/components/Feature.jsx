@@ -99,7 +99,7 @@ const Feature = ({ featuredResult }) => {
                <span className="content">NEXT FACT VALUE</span>
              </section>
              <section className="photos">
-               <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE />
+               <img src={ featuredResult.url } alt={ featuredResult.url } />
              </section>
            </div>
          </main>

@@ -52,10 +52,10 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         value={classification} 
         onChange={(event) => setClassification(event.target.value)}>
         <option value="any">Any</option>
-        {/* map over the classificationList, return an <option /> */}
-        {classificationList.map((classification) => {
-          return (<option key={classification.id} value={classification.name}>{classification.name}</option>);
-        })}
+        {classificationList.map((classif) => {
+           return (<option key={classif.id} value={classif.name}>{classif.name}</option>)
+          }
+        )}
       </select>
     </fieldset>
     <fieldset>
