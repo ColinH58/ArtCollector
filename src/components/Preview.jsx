@@ -17,7 +17,7 @@ const Preview = ({ searchResults:{info, records}, setSearchResults, setFeaturedR
     }
   }
 
-  return <aside id="preview">
+  return (<aside id="preview">
     <header className="pagination">
       <button 
         disabled={!info.prev} 
@@ -45,6 +45,7 @@ const Preview = ({ searchResults:{info, records}, setSearchResults, setFeaturedR
       }
     </section>
   </aside>
-}
+  );
+};
 
 export default Preview;

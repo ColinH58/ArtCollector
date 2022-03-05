@@ -23,7 +23,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
     })
   }, []);
 
-  return <form id="search" onSubmit={async (event) => {
+  return (<form id="search" onSubmit={async (event) => {
     event.preventDefault();
     setIsLoading(true);
     try {
@@ -74,6 +74,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
      </fieldset>
     <button>SEARCH</button>
   </form>
-}
+  );
+};
 
 export default Search;
