@@ -15,19 +15,20 @@ const Search = ({ setIsLoading, setSearchResults }) => {
 
   useEffect(() => {
     Promise.all([
-      fetchAllCenturies(),
+      fetchAllCenturies(), 
       fetchAllClassifications()
-    ]).then(([centuries, classifications]) => {
-      setCenturyList(centuries);
-      setClassificationList(classifications);
-    })
+    ]).then(([century, classificationList]) => {
+      setCenturyList(century);
+      setClassificationList(classificationList)
+    });
   }, []);
 
   return (<form id="search" onSubmit={async (event) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const results = fetchQueryResults({ century, classification, queryString })
+      const results = await fetchQueryResults({ century, classification, queryString })
+      console.log(results)
       setSearchResults(results)
     } catch (err) {
       console.log("WHOOPS! There was an ERROR:" + err)
@@ -52,10 +53,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         value={classification} 
         onChange={(event) => setClassification(event.target.value)}>
         <option value="any">Any</option>
-        {classificationList.map((classif) => {
-           return (<option key={classif.id} value={classif.name}>{classif.name}</option>)
-          }
-        )}
+        {classificationList.map((classes) => <option key={classes.id} value={classes.name}>{classes.name}</option>)}
       </select>
     </fieldset>
     <fieldset>
@@ -67,9 +65,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         onChange={(event) => setCentury(event.target.value)}>
         <option value="any">Any</option>
         {/* map over the centuryList, return an <option /> */}
-        {centuryList.map((century) => {
-          return (<option key={century.id} value={century.name}>{century.name}</option>);
-        })}
+        {centuryList.map((century) => <option key={century.id} value={century.name}>{century.name}</option>)}
       </select>
      </fieldset>
     <button>SEARCH</button>

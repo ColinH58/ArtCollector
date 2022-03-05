@@ -134,12 +134,12 @@ const Feature = (props) => {
                       { people ? 
                      <React.Fragment>
                         <span className="title">{people}</span>
-                        <Searchable searchValue={people} searchTerm={people} />
+                        {people.map((person)=> (<Searchable key={person.displayname} src={person.displayname}/>))}
                      </React.Fragment> : null
                      }
                  </section>
                  <section className="photos">
-                   {/* <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}
+                   {images.map((img) => (<img key={img.primaryimageurl} src={img.primaryimageurl}/>))}
                  </section>
                </div>
              </main>
