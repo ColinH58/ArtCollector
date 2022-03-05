@@ -45,7 +45,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
         onChange={(event) => setQueryString(event.target.value)}/>
     </fieldset>
     <fieldset>
-      <label htmlFor="select-classification">Classification <span className="classification-count">({ classificationList.length })</span></label>
+      <label htmlFor="select-classification">Classification{" "}<span className="classification-count">({ classificationList.length })</span></label>
       <select 
         name="classification"
         id="select-classification"

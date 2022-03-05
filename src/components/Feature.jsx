@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment } from "react";
 
 // Don't touch this import
@@ -43,7 +44,7 @@ const Searchable = ({ searchTerm, searchValue, setIsLoading, setSearchResults })
                 } finally {
                     setIsLoading(false);
                 }
-            }}>{ searchTerm.searchValue }</a>
+            }}>{ searchTerm }</a>
         </span>
     );
 };
@@ -82,31 +83,68 @@ const Searchable = ({ searchTerm, searchValue, setIsLoading, setSearchResults })
  *
  * This component should be exported as default.
  */
-const Feature = ({ featuredResult }) => {
-    return (
-        <>{
-        featuredResult ?
-         <main id="feature">
-           <div className="object-feature">
-             <header>
-               <h3>OBJECT TITLE</h3>
-               <h4>WHEN IT IS DATED</h4>
-             </header>
-             <section className="facts">
-               <span className="title">FACT NAME</span>
-               <span className="content">FACT VALUE</span>
-               <span className="title">NEXT FACT NAME</span>
-               <span className="content">NEXT FACT VALUE</span>
-             </section>
-             <section className="photos">
-               <img src={ featuredResult.url } alt={ featuredResult.url } />
-             </section>
-           </div>
-         </main>
-         :
-         <main id="feature"></main>
-        }</>
-    );
+const Feature = (props) => {
+    const {featuredResult} = props
+
+    //people.map(() => {})
+    if (!featuredResult) {
+        return (
+            <main id="feature"></main>
+        )
+    } else {
+        const { title, dated, images, primaryimageurl, description, culture, style, technique, medium, dimensions, people, department, division, contact, creditline } = props
+        return (
+             <main id="feature">
+               <div className="object-feature">
+                 <header>
+                   <h3>{title}</h3>
+                   <h4>{dated}</h4>
+                 </header>
+                 <section className="facts">
+                     { culture ? 
+                     <React.Fragment>
+                        <span className="title">Culture</span>
+                        <Searchable searchValue={culture} searchTerm={"culture"}/>
+                     </React.Fragment> : null
+                     }
+                    { style ? 
+                     <React.Fragment>
+                        <span className="title">Style</span>
+                        <span className="content">{style}</span>
+                     </React.Fragment> : null
+                     }
+                     { technique ?
+                     <React.Fragment>
+                         <span className="title">Technique</span>
+                         <Searchable searchValue={technique} searchTerm={"technique"}/>
+                     </React.Fragment> : null
+                     }
+                      { medium ? 
+                     <React.Fragment>
+                        <span className="title">Medium</span>
+                        <Searchable searchValue={medium.toLowerCase()} searchTerm={"medium"}/>
+                     </React.Fragment> : null
+                     }
+                      { dimensions ? 
+                     <React.Fragment>
+                        <span className="title">{dimensions}</span>
+                        <span className="content">{dimensions}</span>
+                     </React.Fragment> : null
+                     }
+                      { people ? 
+                     <React.Fragment>
+                        <span className="title">{people}</span>
+                        <Searchable searchValue={people} searchTerm={people} />
+                     </React.Fragment> : null
+                     }
+                 </section>
+                 <section className="photos">
+                   {/* <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}
+                 </section>
+               </div>
+             </main>
+        )
+    }
 };
 
 export default Feature;
